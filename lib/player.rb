@@ -2,28 +2,26 @@ require 'bundler'
 Bundler.require
 require 'pry'
 
-=begin
-require_relative 'lib/user'
-require_relative 'lib/event'
-=end
-
 class Player
-attr_accessor :name1
-=begin
-
-    def initialize name_player# Initialise la valeur de player et ces points de vie
-        @name = name_player
-    end
-=end
-    def board_case
-        tab=["A1","||","A2","||","A3",
-             "B1","||","B2","||","B3",
-             "C1","||","C2","||","C3"]
-             puts tab
-    end
-
+    attr_accessor :nom, :valeur
     
-
-end
-
-Player.new.board_case
+    def initialize(nom= nil, valeur= nil)
+      if nom == nil       #Si on initialize sans un nom, on demande à l'utilisateur de taper son nom
+        puts "Entrer votre nom: "
+        nom = gets.chomp
+      end
+      @nom = nom
+      if valeur == nil
+        puts "Vous choisissez quel valeur? (X ou O) "
+        prise = gets.chomp
+        while prise != "X" && prise != "O" #Si l'utilisateur choisi un autre valeur que X et O
+        puts "Mauvais choix, reessayer! "
+        prise = gets.chomp
+        end
+        valeur = prise
+      end
+      @valeur = valeur
+      
+    end
+  
+  end
